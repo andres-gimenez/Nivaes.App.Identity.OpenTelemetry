@@ -27,25 +27,15 @@ services:
       - "${ENVOY_PORT}:${ENVOY_PORT}"
       - 10000:10000
     environment:
-      - FRONTEND_PORT
-      - FRONTEND_HOST
-      - LOCUST_WEB_HOST
-      - LOCUST_WEB_PORT
       - GRAFANA_SERVICE_PORT
       - GRAFANA_SERVICE_HOST
       - JAEGER_SERVICE_PORT
       - JAEGER_SERVICE_HOST
       - OTEL_COLLECTOR_HOST
-      - IMAGE_PROVIDER_HOST
-      - IMAGE_PROVIDER_PORT
       - OTEL_COLLECTOR_PORT_GRPC
       - OTEL_COLLECTOR_PORT_HTTP
       - OTEL_RESOURCE_ATTRIBUTES
       - ENVOY_PORT
-      - FLAGD_HOST
-      - FLAGD_PORT
-      - FLAGD_UI_HOST
-      - FLAGD_UI_PORT
     depends_on:
       jaeger:
         condition: service_started
