@@ -41,11 +41,7 @@ static_resources:
                           route: { cluster: jaeger }
                         - match: { prefix: "/grafana" }
                           route: { cluster: grafana }
-                        - match: { prefix: "/flagservice/" }
-                          route: { cluster: flagservice, prefix_rewrite: "/", timeout: 0s }
-                        - match: { prefix: "/feature" }
-                          route: { cluster: flagdui }
-                http_filters:
+                 http_filters:
                   - name: envoy.filters.http.fault
                     typed_config:
                       "@type": type.googleapis.com/envoy.extensions.filters.http.fault.v3.HTTPFault
@@ -88,30 +84,6 @@ static_resources:
                     socket_address:
                       address: ${OTEL_COLLECTOR_HOST}
                       port_value: ${OTEL_COLLECTOR_PORT_HTTP}
-    - name: flagservice
-      type: STRICT_DNS
-      lb_policy: ROUND_ROBIN
-      load_assignment:
-        cluster_name: flagservice
-        endpoints:
-          - lb_endpoints:
-              - endpoint:
-                  address:
-                    socket_address:
-                      address: ${FLAGD_HOST}
-                      port_value: ${FLAGD_PORT}
-    - name: flagdui
-      type: STRICT_DNS
-      lb_policy: ROUND_ROBIN
-      load_assignment:
-        cluster_name: flagdui
-        endpoints:
-          - lb_endpoints:
-              - endpoint:
-                  address:
-                    socket_address:
-                      address: ${FLAGD_UI_HOST}
-                      port_value: ${FLAGD_UI_PORT}
     - name: grafana
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
