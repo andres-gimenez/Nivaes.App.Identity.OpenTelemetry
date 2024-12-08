@@ -59,33 +59,6 @@ services:
       grafana:
         condition: service_started
 
-  # Imageprovider
-  imageprovider:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-imageprovider
-    container_name: imageprovider
-    build:
-      context: ./
-      dockerfile: ${IMAGE_PROVIDER_DOCKERFILE}
-      cache_from:
-        - ${IMAGE_NAME}:${IMAGE_VERSION}-imageprovider
-    deploy:
-      resources:
-        limits:
-          memory: 120M
-    restart: unless-stopped
-    ports:
-      - "${IMAGE_PROVIDER_PORT}"
-    environment:
-      - IMAGE_PROVIDER_PORT
-      - OTEL_COLLECTOR_HOST
-      - OTEL_COLLECTOR_PORT_GRPC
-      - OTEL_SERVICE_NAME=imageprovider
-      - OTEL_RESOURCE_ATTRIBUTES
-    depends_on:
-      otelcol:
-        condition: service_started
-    logging: *logging
-
   # Quote service
   quoteservice:
     image: ${IMAGE_NAME}:${DEMO_VERSION}-quoteservice

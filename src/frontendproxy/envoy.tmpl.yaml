@@ -1,7 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
-
 static_resources:
   listeners:
     - address:
@@ -45,8 +41,6 @@ static_resources:
                           route: { cluster: jaeger }
                         - match: { prefix: "/grafana" }
                           route: { cluster: grafana }
-                        - match: { prefix: "/images/" }
-                          route: { cluster: imageprovider, prefix_rewrite: "/" }
                         - match: { prefix: "/flagservice/" }
                           route: { cluster: flagservice, prefix_rewrite: "/", timeout: 0s }
                         - match: { prefix: "/feature" }
@@ -94,18 +88,6 @@ static_resources:
                     socket_address:
                       address: ${OTEL_COLLECTOR_HOST}
                       port_value: ${OTEL_COLLECTOR_PORT_HTTP}
-    - name: imageprovider
-      type: STRICT_DNS
-      lb_policy: ROUND_ROBIN
-      load_assignment:
-        cluster_name: imageprovider
-        endpoints:
-          - lb_endpoints:
-              - endpoint:
-                  address:
-                    socket_address:
-                      address: ${IMAGE_PROVIDER_HOST}
-                      port_value: ${IMAGE_PROVIDER_PORT}
     - name: flagservice
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
