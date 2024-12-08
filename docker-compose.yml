@@ -1,6 +1,3 @@
-# Copyright The OpenTelemetry Authors
-# SPDX-License-Identifier: Apache-2.0
-
 x-default-logging: &logging
   driver: "json-file"
   options:
@@ -10,14 +7,10 @@ x-default-logging: &logging
 
 networks:
   default:
-    name: opentelemetry-demo
+    name: opentelemetry-movile
     driver: bridge
 
 services:
-  # ******************
-  # Core Demo Services
-  # ******************
-
   # Frontend Proxy (Envoy)
   frontendproxy:
     image: ${IMAGE_NAME}:${DEMO_VERSION}-frontendproxy
@@ -59,10 +52,6 @@ services:
       grafana:
         condition: service_started
 
-  # ******************
-  # Dependent Services
-  # ******************
- 
   # ********************
   # Telemetry Components
   # ********************
