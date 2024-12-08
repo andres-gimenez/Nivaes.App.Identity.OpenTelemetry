@@ -8,12 +8,6 @@ src/*/Dockerfile
 src/*/*/Dockerfile
 
 ###################################
-# currencyservice
-./src/currencyservice/client.js
-./src/currencyservice/node_modules/
-###################################
-
-###################################
 # featureflagservice
 # Common development/test artifacts
 ./src/featureflagservice/cover/

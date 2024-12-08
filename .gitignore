@@ -48,5 +48,4 @@ test/tracetesting/tracetesting-vars.yaml
 /src/frauddetectionservice/src/main/proto
 /src/recommendationservice/demo_pb2*.py
 /src/shippingservice/proto/
-/src/currencyservice/proto
 /src/accountingservice/genproto
