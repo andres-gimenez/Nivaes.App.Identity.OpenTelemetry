@@ -18,32 +18,6 @@ services:
   # Core Demo Services
   # ******************
 
-  # Email service
-  emailservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-emailservice
-    container_name: email-service
-    build:
-      context: ./src/emailservice
-      cache_from:
-        - ${IMAGE_NAME}:${IMAGE_VERSION}-emailservice
-    deploy:
-      resources:
-        limits:
-          memory: 100M
-    restart: unless-stopped
-    ports:
-      - "${EMAIL_SERVICE_PORT}"
-    environment:
-      - APP_ENV=production
-      - EMAIL_SERVICE_PORT
-      - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}/v1/traces
-      - OTEL_RESOURCE_ATTRIBUTES
-      - OTEL_SERVICE_NAME=emailservice
-    depends_on:
-      otelcol:
-        condition: service_started
-    logging: *logging
-
   # Frontend Proxy (Envoy)
   frontendproxy:
     image: ${IMAGE_NAME}:${DEMO_VERSION}-frontendproxy
