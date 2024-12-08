@@ -37,7 +37,6 @@ composer.lock
 .dockerhub.env
 .ghcr.env
 
-src/shippingservice/target/
 test/tracetesting/tracetesting-vars.yaml
 
 # Ignore copied/generated protobuf files
@@ -47,5 +46,4 @@ test/tracetesting/tracetesting-vars.yaml
 /src/featureflagservice/src/oteldemo_*.erl
 /src/frauddetectionservice/src/main/proto
 /src/recommendationservice/demo_pb2*.py
-/src/shippingservice/proto/
 /src/accountingservice/genproto

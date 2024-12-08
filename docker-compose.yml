@@ -140,33 +140,6 @@ services:
         condition: service_started
     logging: *logging
 
-  # Shipping service
-  shippingservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice
-    container_name: shipping-service
-    build:
-      context: ./
-      dockerfile: ${SHIPPING_SERVICE_DOCKERFILE}
-      cache_from:
-        - ${IMAGE_NAME}:${IMAGE_VERSION}-shippingservice
-    deploy:
-      resources:
-        limits:
-          memory: 20M
-    restart: unless-stopped
-    ports:
-      - "${SHIPPING_SERVICE_PORT}"
-    environment:
-      - SHIPPING_SERVICE_PORT
-      - QUOTE_SERVICE_ADDR
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_GRPC}
-      - OTEL_RESOURCE_ATTRIBUTES
-      - OTEL_SERVICE_NAME=shippingservice
-    depends_on:
-      otelcol:
-        condition: service_started
-    logging: *logging
-
   # ******************
   # Dependent Services
   # ******************

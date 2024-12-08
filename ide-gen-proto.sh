@@ -69,4 +69,3 @@ gen_proto_dotnet accountingservice
 # gen_proto_ruby emailservice
 gen_proto_go productcatalogservice
 # gen_proto_php quoteservice
-gen_proto_rust shippingservice

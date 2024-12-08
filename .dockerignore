@@ -16,11 +16,6 @@ src/*/*/Dockerfile
 ./src/featureflagservice/tmp/
 ./src/featureflagservice/.elixir_ls
 
-###################################
-# shippingservice
-./src/shippingservice/target
-###################################
-
 # Mix artifacts
 ./src/featureflagservice/_build/
 ./src/featureflagservice/deps/

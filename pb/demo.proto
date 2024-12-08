@@ -54,39 +54,6 @@ message SearchProductsResponse {
     repeated Product results = 1;
 }
 
-// ---------------Shipping Service----------
-
-service ShippingService {
-    rpc GetQuote(GetQuoteRequest) returns (GetQuoteResponse) {}
-    rpc ShipOrder(ShipOrderRequest) returns (ShipOrderResponse) {}
-}
-
-message GetQuoteRequest {
-    Address address = 1;
-    repeated CartItem items = 2;
-}
-
-message GetQuoteResponse {
-    Money cost_usd = 1;
-}
-
-message ShipOrderRequest {
-    Address address = 1;
-    repeated CartItem items = 2;
-}
-
-message ShipOrderResponse {
-    string tracking_id = 1;
-}
-
-message Address {
-    string street_address = 1;
-    string city = 2;
-    string state = 3;
-    string country = 4;
-    string zip_code = 5;
-}
-
 // -------------Email service-----------------
 
 service EmailService {
