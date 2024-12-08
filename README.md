@@ -1,1 +1,1 @@
-#OpenTelemetry movile. 
+# OpenTelemetry mobile
