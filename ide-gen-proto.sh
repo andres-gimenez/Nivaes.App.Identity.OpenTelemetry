@@ -67,4 +67,3 @@ gen_proto_ts() {
 
 gen_proto_dotnet accountingservice
 gen_proto_go productcatalogservice
-# gen_proto_php quoteservice

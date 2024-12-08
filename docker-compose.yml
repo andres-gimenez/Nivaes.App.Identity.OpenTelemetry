@@ -59,34 +59,6 @@ services:
       grafana:
         condition: service_started
 
-  # Quote service
-  quoteservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-quoteservice
-    container_name: quote-service
-    build:
-      context: ./
-      dockerfile: ${QUOTE_SERVICE_DOCKERFILE}
-      cache_from:
-        - ${IMAGE_NAME}:${IMAGE_VERSION}-quoteservice
-    deploy:
-      resources:
-        limits:
-          memory: 40M
-    restart: unless-stopped
-    ports:
-      - "${QUOTE_SERVICE_PORT}"
-    environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://${OTEL_COLLECTOR_HOST}:${OTEL_COLLECTOR_PORT_HTTP}
-      - OTEL_PHP_AUTOLOAD_ENABLED=true
-      - QUOTE_SERVICE_PORT
-      - OTEL_RESOURCE_ATTRIBUTES
-      - OTEL_SERVICE_NAME=quoteservice
-      - OTEL_PHP_INTERNAL_METRICS_ENABLED=true
-    depends_on:
-      otelcol:
-        condition: service_started
-    logging: *logging
-
   # ******************
   # Dependent Services
   # ******************
